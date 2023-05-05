@@ -14,13 +14,19 @@ export class AccessAccessOption extends AccessAccessOptionBase {
 	@Column()
 	public accessOptionId: string;
 
-	@ManyToOne(() => AccessOption, (accessOption) => accessOption.accessAccessOptions)
+	@ManyToOne(() => AccessOption, (accessOption) => accessOption.accessAccessOptions, {
+		onDelete: 'CASCADE',
+		onUpdate: 'CASCADE',
+	})
 	public accessOption: AccessOption;
 
 	@Column()
 	public accessId: string;
 
-	@ManyToOne(() => Access, (access) => access.accessAccessOptions)
+	@ManyToOne(() => Access, (access) => access.accessAccessOptions, {
+		onDelete: 'CASCADE',
+		onUpdate: 'CASCADE',
+	})
 	public access: Access;
 
 	@OneToMany(() => AccessAccessAccessOption, (accessAccessAccessOption) => accessAccessAccessOption.accessAccessOption)
